@@ -11,6 +11,9 @@ import { Schedule } from "../pages/Schedule";
 import { Materils } from "../pages/innerPages/Materils";
 import { Students } from "../pages/innerPages/Students";
 import { Raitings } from "../pages/innerPages/Raitings";
+import { CreateMaterials } from "../pages/innerPages/CreateMaterials";
+import { UpdateMaterials } from "../pages/innerPages/UpdateMaterials";
+import { MaterialsDoc } from "../components/MaterialsDoc";
 
 export const ROUTES = {
   COURSES: "courses",
@@ -20,6 +23,8 @@ export const ROUTES = {
   MATERILS: "materials",
   STUDENTS: "students",
   RAITINGS: "raitings",
+  CREATE: "create",
+  UPDATE: "update",
 };
 
 // eslint-disable-next-line react/prop-types
@@ -38,7 +43,15 @@ export const AppRoutes = ({ children }) => {
               index: true,
               element: <Navigate to={ROUTES.MATERILS} replace />,
             },
-            { path: ROUTES.MATERILS, element: <Materils /> },
+            {
+              path: ROUTES.MATERILS,
+              element: <Materils />,
+              children: [
+                { index: true, element: <MaterialsDoc /> },
+                { path: ROUTES.CREATE, element: <CreateMaterials /> },
+                { path: `${ROUTES.UPDATE}/:id`, element: <UpdateMaterials /> },
+              ],
+            },
             { path: ROUTES.STUDENTS, element: <Students /> },
             { path: ROUTES.RAITINGS, element: <Raitings /> },
           ],

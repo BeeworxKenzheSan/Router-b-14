@@ -1,11 +1,11 @@
-import { useSelector } from "react-redux";
 import { AppTitle } from "../../components/UI/Title";
+import { Outlet } from "react-router-dom";
 
 export const Materils = () => {
-  const store = useSelector((state) => state);
   return (
     <div>
-      <AppTitle>Materils {store.counter}</AppTitle>
+      <AppTitle>Materils </AppTitle>
+      <Outlet />
     </div>
   );
 };
