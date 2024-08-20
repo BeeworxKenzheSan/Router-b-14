@@ -1,11 +1,25 @@
-import {createStore} from 'redux'
+import { createStore, combineReducers } from "redux";
+import { studentReducer } from "./studentReducer";
+import { materialReducer } from "./materialsReducer";
 
 const initialState = {
-    counter: 0
-}
+  counter: 100,
+};
 
-const counterReducer = (state=initialState,action) => {
-    return state
-}
+const counterReducer = (state = initialState, action) => {
+  if (action.type === "plus") {
+    return { counter: state.counter + 1 };
+  }
+  if (action.type === "minus") {
+    return { counter: state.counter - 1 };
+  }
+  return state;
+};
 
-export const store = createStore(counterReducer)
+const rootReducers = combineReducers({
+  counter: counterReducer,
+  students: studentReducer,
+  materials: materialReducer,
+});
+
+export const store = createStore(rootReducers);
