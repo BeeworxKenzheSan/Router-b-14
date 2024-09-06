@@ -14,6 +14,9 @@ import { Raitings } from "../pages/innerPages/Raitings";
 import { CreateMaterials } from "../pages/innerPages/CreateMaterials";
 import { UpdateMaterials } from "../pages/innerPages/UpdateMaterials";
 import { MaterialsDoc } from "../components/MaterialsDoc";
+import { RaitingDoc } from "../pages/raiting/RaitingDoc";
+import { CreateRaiting } from "../pages/raiting/CreateRaiting";
+import { UpdateRaiting } from "../pages/raiting/UpdateRaiting";
 
 export const ROUTES = {
   COURSES: "courses",
@@ -25,6 +28,8 @@ export const ROUTES = {
   RAITINGS: "raitings",
   CREATE: "create",
   UPDATE: "update",
+  CREAT_R: "create",
+  UPDATE_R: "update",
 };
 
 // eslint-disable-next-line react/prop-types
@@ -53,7 +58,15 @@ export const AppRoutes = ({ children }) => {
               ],
             },
             { path: ROUTES.STUDENTS, element: <Students /> },
-            { path: ROUTES.RAITINGS, element: <Raitings /> },
+            {
+              path: ROUTES.RAITINGS,
+              element: <Raitings />,
+              children: [
+                { index: true, element: <RaitingDoc /> },
+                { path: ROUTES.CREATE, element: <CreateRaiting /> },
+                { path: `${ROUTES.UPDATE}/:id`, element: <UpdateRaiting /> },
+              ],
+            },
           ],
         },
         { path: ROUTES.ANOUNCEMENT, element: <Anounsments /> },

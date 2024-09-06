@@ -1,6 +1,8 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import { studentReducer } from "./studentReducer";
 import { materialReducer } from "./materialsReducer";
+import { raitingReducer } from "./raitingReducer/raitingReducer";
+import { thunk } from "redux-thunk";
 
 const initialState = {
   counter: 100,
@@ -20,6 +22,7 @@ const rootReducers = combineReducers({
   counter: counterReducer,
   students: studentReducer,
   materials: materialReducer,
+  r: raitingReducer,
 });
 
-export const store = createStore(rootReducers);
+export const store = createStore(rootReducers, applyMiddleware(thunk));
